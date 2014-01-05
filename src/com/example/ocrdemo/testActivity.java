@@ -3,6 +3,7 @@ package com.example.ocrdemo;
 import java.io.File;
 import java.io.IOException;
 
+import com.google.android.glass.app.Card;
 import com.google.android.glass.media.CameraManager;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -118,9 +120,11 @@ private void processPictureWhenReady(final String picturePath) throws IOExceptio
     	String recognizedText = baseApi.getUTF8Text();
     	baseApi.end();
     	
-    	TextView tv = ( TextView ) findViewById(R.id.editText1);
-		tv.setText("ERROR:YES");
-    	
+    	//TextView tv = ( TextView ) findViewById(R.id.editText1);
+		//tv.setText("ERROR:YES");
+    	Card card1 = new Card(getBaseContext());
+		card1.setText("ERROR:YES");
+		View card1View = card1.toView();
     	
     	Log.d("Start", recognizedText);
     	
