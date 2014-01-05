@@ -188,14 +188,14 @@ public class CameraActivity extends Activity implements OnClickListener {
 					Bitmap bm = decodeSampledBitmapFromFile(file, 500, 500);
 					imageView.setImageBitmap(bm);
 					ocr result = new ocr();
-					//String final_string = result.ocrconvert(mediaFile.toString(),bm);
+					String final_string = result.ocrconvert(mediaFile.toString(),bm);
 					TextView tv = ( TextView ) findViewById(R.id.editText1);
-					tv.setText("ERROR:YES");
-					Card card1 = new Card(getBaseContext());
-					card1.setText("ERROR:YES");
+					tv.setText(final_string);
+					//Card card1 = new Card(getBaseContext());
+					//card1.setText("ERROR:YES");
 					//card1.setFootnote("I'm the footer!");
 					// Don't call this if you're using TimelineManager
-					View card1View = card1.toView();
+					//View card1View = card1.toView();
 					
 				}
 			} else if (resultCode == RESULT_CANCELED) {

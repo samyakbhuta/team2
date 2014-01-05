@@ -30,8 +30,8 @@ public class ocr {
 		String recognizedText = baseApi.getUTF8Text();
 		baseApi.end();
 		System.out.println("2st");
-		textmanipulation a = new textmanipulation();
-		String result = a.manipulation(recognizedText);
-		return result;
+		//textmanipulation a = new textmanipulation();
+		//String result = a.manipulation(recognizedText);
+		return recognizedText;
 	}
 }
