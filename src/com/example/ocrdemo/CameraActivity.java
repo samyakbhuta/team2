@@ -188,14 +188,17 @@ public class CameraActivity extends Activity implements OnClickListener {
 					Bitmap bm = decodeSampledBitmapFromFile(file, 500, 500);
 					imageView.setImageBitmap(bm);
 					ocr result = new ocr();
-					String final_string = result.ocrconvert(mediaFile.toString(),bm);
+					//String final_string = result.ocrconvert(mediaFile.toString(),bm);
 					TextView tv = ( TextView ) findViewById(R.id.editText1);
-					tv.setText(final_string);
+					tv.setText("error");
 					//Card card1 = new Card(getBaseContext());
 					//card1.setText("ERROR:YES");
 					//card1.setFootnote("I'm the footer!");
 					// Don't call this if you're using TimelineManager
 					//View card1View = card1.toView();
+					
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?client=safari&rls=en&q=url+asset++file:///android_asset/&ie=UTF-8&oe=UTF-8#q=pip%20error%20could%20not%20create&rls=en"));
+					startActivity(browserIntent);
 					
 				}
 			} else if (resultCode == RESULT_CANCELED) {

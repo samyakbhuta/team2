@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.ocrdemo.testActivity"
+            android:name="com.example.ocrdemo.CameraActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action

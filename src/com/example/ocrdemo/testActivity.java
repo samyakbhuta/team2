@@ -13,15 +13,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.FileObserver;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+
 
 
 public class testActivity extends Activity {
@@ -36,7 +34,6 @@ private static final int TAKE_PICTURE_REQUEST = 1;
 	}
 
 private void takePicture() {
-	Log.d("Start", "Activity started!");
     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     startActivityForResult(intent, TAKE_PICTURE_REQUEST);
 }
@@ -66,18 +63,11 @@ private void processPictureWhenReady(final String picturePath) throws IOExceptio
     	Log.d("Start", "OCR Started!");
     	boolean _taken = true;
     	String _path = picturePath;
-    	//String _datapath = "file:///android_asset/eng.traineddata";
-        BitmapFactory.Options options = new BitmapFactory.Options();
+    	BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 4;
         	
         Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
-        //_image.setImageBitmap(bitmap);
-        	
-        //_field.setVisibility( View.GONE );
-    	
-    	
-    	
-    	ExifInterface exif = new ExifInterface(_path);
+        ExifInterface exif = new ExifInterface(_path);
     	int exifOrientation = exif.getAttributeInt(
     	        ExifInterface.TAG_ORIENTATION,
     	        ExifInterface.ORIENTATION_NORMAL);
@@ -111,22 +101,25 @@ private void processPictureWhenReady(final String picturePath) throws IOExceptio
     	
     	Log.d("Start", "OCR Ended");
     	
-    	TessBaseAPI baseApi = new TessBaseAPI();
+    	//TessBaseAPI baseApi = new TessBaseAPI();
     	// DATA_PATH = Path to the storage
     	// lang = for which the language data exists, usually "eng"
-    	baseApi.init("file:///android_asset/tessdata/eng.traineddata", "eng");
+    	//baseApi.init("file:///android_asset/tessdata/eng.traineddata", "eng");
     	// Eg. baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
-    	baseApi.setImage(bitmap);
-    	String recognizedText = baseApi.getUTF8Text();
-    	baseApi.end();
+    	//baseApi.setImage(bitmap);
+    	//String recognizedText = baseApi.getUTF8Text();
+    	//baseApi.end();
     	
     	//TextView tv = ( TextView ) findViewById(R.id.editText1);
 		//tv.setText("ERROR:YES");
-    	Card card1 = new Card(getBaseContext());
-		card1.setText("ERROR:YES");
-		View card1View = card1.toView();
+    	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?client=safari&rls=en&q=url+asset++file:///android_asset/&ie=UTF-8&oe=UTF-8#q=pip%20error%20could%20not%20create&rls=en"));
+		startActivity(browserIntent);
     	
-    	Log.d("Start", recognizedText);
+    	//Card card1 = new Card(getBaseContext());
+		//card1.setText("ERROR:YES");
+		//View card1View = card1.toView();
+    	
+    	Log.d("Start", "TEST");
     	
     } else {
         // The file does not exist yet. Before starting the file observer, you
